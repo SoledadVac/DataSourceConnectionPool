@@ -41,11 +41,11 @@ public class ConnectionPool {
                     pool.wait();
                 }
                 return  pool.removeFirst();
-            }else{
+            }else{//超时等待。。。
                 long future=System.currentTimeMillis()+mils;
                 long remaining=mils;
                 while (pool.isEmpty()&&remaining>0){
-                    pool.wait(remaining);
+                    pool.wait(remaining);//超时等待
                     remaining=future-System.currentTimeMillis();
                 }
                 Connection result=null;

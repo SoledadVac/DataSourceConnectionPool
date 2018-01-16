@@ -44,21 +44,19 @@ public class WaitNotifyTimeOutDemo {
             System.out.println("超时时间为："+System.currentTimeMillis());
             long remaining=this.waitMis;
             synchronized (lock){
-
                 while (isWaiting && remaining>0){
-                    remaining=futuretime-System.currentTimeMillis();//计算剩余时间
-                    if(remaining<0){
-                        System.out.println("超时了，返回吧");
-                        return;
+                    try {
+                        System.out.println("lock begin to wait////////////");
+                        lock.wait(remaining);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-
-                        try {
-                            System.out.println("lock begin to wait////////////");
-                            lock.wait(remaining);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    System.out.println("finish while...");
+                    remaining=futuretime-System.currentTimeMillis();//计算剩余时间
+                    System.out.println("finish wait while...");
+                }
+                if(remaining<0){
+                    System.out.println("超时了，返回吧");
+                    return;
                 }
                 System.out.println("finish ............"+System.currentTimeMillis());
                 return;//超时了就返回
