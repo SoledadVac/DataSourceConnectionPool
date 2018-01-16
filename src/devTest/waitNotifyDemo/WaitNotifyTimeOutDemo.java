@@ -18,7 +18,7 @@ public class WaitNotifyTimeOutDemo {
 
 
     public static void main(String[] args) {
-        Thread waitThread=new Thread(new WaitThread(1000),"waitthread");
+        Thread waitThread=new Thread(new WaitThread(4000),"waitthread");
         waitThread.start();
         try {
             Thread.sleep(5000);
@@ -54,7 +54,7 @@ public class WaitNotifyTimeOutDemo {
                     remaining=futuretime-System.currentTimeMillis();//计算剩余时间
                     System.out.println("finish wait while...");
                 }
-                if(remaining<0){
+                if(remaining<=0){
                     System.out.println("超时了，返回吧");
                     return;
                 }
