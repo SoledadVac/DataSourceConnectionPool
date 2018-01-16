@@ -18,7 +18,7 @@ public class WaitNotifyTimeOutDemo {
 
 
     public static void main(String[] args) {
-        Thread waitThread=new Thread(new WaitThread(500),"waitthread");
+        Thread waitThread=new Thread(new WaitThread(1000),"waitthread");
         waitThread.start();
         try {
             Thread.sleep(5000);
@@ -47,24 +47,21 @@ public class WaitNotifyTimeOutDemo {
 
                 while (isWaiting && remaining>0){
                     remaining=futuretime-System.currentTimeMillis();//计算剩余时间
-                    if(isWaiting==true && remaining<0){//超时处理
-                        System.out.println("超时啦啦啦啦。。。。。。。。"+System.currentTimeMillis());
+                    if(remaining<0){
+                        System.out.println("超时了，返回吧");
+                        return;
+                    }
+
                         try {
-                            throw new  TimeoutException();
-                        } catch (TimeoutException e) {
-                            e.printStackTrace();
-                        }
-                    }else{
-                        try {
+                            System.out.println("lock begin to wait////////////");
                             lock.wait(remaining);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                    }
-                    System.out.println("finish while............"+System.currentTimeMillis());
+                    System.out.println("finish while...");
                 }
-                System.out.println("get lock and finish waiting￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
-
+                System.out.println("finish ............"+System.currentTimeMillis());
+                return;//超时了就返回
             }
         }
     }
