@@ -1,4 +1,4 @@
-package connection;
+package connectionModel;
 
 import java.sql.Connection;
 import java.util.concurrent.CountDownLatch;

@@ -1,4 +1,4 @@
-package connection;
+package connectionModel;
 
 import java.sql.Connection;
 import java.util.concurrent.CountDownLatch;
@@ -34,8 +34,8 @@ public class ConnectionClientTest {
         end.await();
 
         System.out.println("total invoke="+(threadCount*count));
-        System.out.println("got connection="+got);
-        System.out.println("not got connection="+notGot);
+        System.out.println("got connectionModel="+got);
+        System.out.println("not got connectionModel="+notGot);
     }
 
 
