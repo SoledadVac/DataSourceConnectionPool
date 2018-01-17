@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * \* Created: liuhuichao
  * \* Date: 2018/1/15
  * \* Time: 下午3:14
- * \* Description:连接池测试
+ * \* Description:连接池测试--官方代码，from【并发编程的艺术】
  * \
  */
 public class ConnectionClientTest {
